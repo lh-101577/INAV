@@ -47,6 +47,7 @@
 #include "flight/imu.h"
 #include "flight/failsafe.h"
 #include "flight/mixer.h"
+#include "flight/obstacle_avoidance.h"
 
 #include "navigation/navigation.h"
 #include "navigation/navigation_private.h"
@@ -533,6 +534,7 @@ static void updatePositionVelocityController_MC(const float maxSpeed)
     const float velExpoFactor = getVelocityExpoAttenuationFactor(neuVelTotal, maxSpeed);
     posControl.desiredState.vel.x = neuVelX * velHeadFactor * velExpoFactor;
     posControl.desiredState.vel.y = neuVelY * velHeadFactor * velExpoFactor;
+    
 }
 
 static float computeNormalizedVelocity(const float value, const float maxValue)
@@ -1013,8 +1015,17 @@ void applyMulticopterNavigationController(navigationFSMStateFlags_t navStateFlag
         if (navStateFlags & NAV_CTL_ALT)
             applyMulticopterAltitudeController(currentTimeUs);
 
-        if (navStateFlags & NAV_CTL_POS)
+        if (navStateFlags & NAV_CTL_POS) {
             applyMulticopterPositionController(currentTimeUs);
+            if (obstacleAvoidanceIsActive()) {
+                obstacleAvoidanceAdjustVelocity(
+                    &posControl.desiredState.vel.x,
+                    &posControl.desiredState.vel.y,
+                    posControl.actualState.cosYaw,
+                    posControl.actualState.sinYaw
+                );
+            }
+        }
 
         if (navStateFlags & NAV_CTL_YAW)
             applyMulticopterHeadingController();

@@ -26,12 +26,12 @@ timerHardware_t timerHardware[] = {
     DEF_TIM(TIM3,  CH4, PB1,  TIM_USE_OUTPUT_AUTO, 0, 0), // S2  D(1,2)
     DEF_TIM(TIM2,  CH1, PA15, TIM_USE_OUTPUT_AUTO, 0, 0), // S3  -D(1,5)
     DEF_TIM(TIM2,  CH2, PB3,  TIM_USE_OUTPUT_AUTO, 0, 0), // S4  D(1,6)
-    DEF_TIM(TIM3,  CH1, PB4,  TIM_USE_OUTPUT_AUTO, 0, 0), // S5  D(1,4)
-    DEF_TIM(TIM3,  CH2, PB5,  TIM_USE_OUTPUT_AUTO, 0, 0), // S6  -D(1,5)
-    DEF_TIM(TIM4,  CH3, PB8,  TIM_USE_OUTPUT_AUTO, 0, 0), // S7
-    DEF_TIM(TIM4,  CH4, PB9,  TIM_USE_OUTPUT_AUTO, 0, 0), // S8
-    DEF_TIM(TIM12, CH1, PB14, TIM_USE_OUTPUT_AUTO, 0, 0), // S9
-    DEF_TIM(TIM12, CH2, PB15, TIM_USE_OUTPUT_AUTO, 0, 0), // S10
+    // DEF_TIM(TIM3,  CH1, PB4,  TIM_USE_OUTPUT_AUTO, 0, 0), // S5  D(1,4)
+    // DEF_TIM(TIM3,  CH2, PB5,  TIM_USE_OUTPUT_AUTO, 0, 0), // S6  -D(1,5)
+    // DEF_TIM(TIM4,  CH3, PB8,  TIM_USE_OUTPUT_AUTO, 0, 0), // S7
+    // DEF_TIM(TIM4,  CH4, PB9,  TIM_USE_OUTPUT_AUTO, 0, 0), // S8
+    // DEF_TIM(TIM12, CH1, PB14, TIM_USE_OUTPUT_AUTO, 0, 0), // S9
+    // DEF_TIM(TIM12, CH2, PB15, TIM_USE_OUTPUT_AUTO, 0, 0), // S10
 };
 
 const int timerHardwareCount = sizeof(timerHardware) / sizeof(timerHardware[0]);

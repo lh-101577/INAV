@@ -99,6 +99,7 @@
 #include "flight/rpm_filter.h"
 #include "flight/servos.h"
 #include "flight/ez_tune.h"
+#include "flight/obstacle_avoidance.h"
 
 #include "io/asyncfatfs/asyncfatfs.h"
 #include "io/beeper.h"
@@ -740,6 +741,10 @@ void init(void)
 
 #ifdef USE_POWER_LIMITS
     powerLimiterInit();
+#endif
+
+#ifdef USE_RANGEFINDER_VL53L1X
+    obstacleAvoidanceInit();
 #endif
 
 #if !defined(SITL_BUILD)

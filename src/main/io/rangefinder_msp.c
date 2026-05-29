@@ -35,7 +35,7 @@
 #include "common/maths.h"
 
 #include "io/serial.h"
-
+#include "build/debug.h"
 #if defined(USE_RANGEFINDER_MSP)
 
 #include "drivers/rangefinder/rangefinder_virtual.h"
@@ -78,6 +78,7 @@ void mspRangefinderReceiveNewData(uint8_t * bufferPtr)
 
     sensorData = pkt->distanceMm / 10;
     hasNewData = true;
+    //  DEBUG_SET(DEBUG_FLOW_RAW, 4, sensorData);
 }
 
 virtualRangefinderVTable_t rangefinderMSPVtable = {

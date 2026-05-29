@@ -54,6 +54,7 @@
 #include "flight/servos.h"
 #include "flight/wind_estimator.h"
 #include "flight/adaptive_filter.h"
+#include "flight/obstacle_avoidance.h"
 
 #include "navigation/navigation.h"
 
@@ -246,6 +247,11 @@ void taskUpdateRangefinder(timeUs_t currentTimeUs)
     if (rangefinderProcess(calculateCosTiltAngle())) {
         updatePositionEstimator_SurfaceTopic(currentTimeUs, rangefinderGetLatestAltitude());
     }
+
+    /*
+     * Update obstacle avoidance
+     */
+    obstacleAvoidanceUpdate();
 }
 #endif
 

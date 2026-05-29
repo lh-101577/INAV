@@ -91,6 +91,7 @@
 
 #include "flight/failsafe.h"
 #include "flight/power_limits.h"
+#include "flight/obstacle_avoidance.h"
 
 #include "config/feature.h"
 #include "common/vector.h"
@@ -420,6 +421,9 @@ static void processPilotAndFailSafeActions(float dT)
 
         // Signal updated rcCommand values to Failsafe system
         failsafeUpdateRcCommandValues();
+
+        // Apply obstacle avoidance override
+        obstacleAvoidanceOverrideRcControls(rcCommand);
 
         if (FLIGHT_MODE(HEADFREE_MODE)) {
             const float radDiff = degreesToRadians(DECIDEGREES_TO_DEGREES(attitude.values.yaw) - headFreeModeHold);
